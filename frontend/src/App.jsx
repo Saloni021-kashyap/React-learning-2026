@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 
 function App() {
@@ -10,17 +9,14 @@ function App() {
                 const response = await fetch(
                     "http://localhost:5000/api/students"
                 );
-
                 const data = await response.json();
                 setStudents(data);
             } catch (error) {
                 console.error("Error fetching students:", error);
             }
         }
-
         fetchStudents();
     }, []);
-
     return (
         <div>
             <h1>Student List</h1>
@@ -33,5 +29,4 @@ function App() {
         </div>
     );
 }
-
 export default App;

@@ -1,4 +1,3 @@
-
 const express = require("express");
 const cors = require("cors");
 
@@ -13,12 +12,12 @@ let students = [
     { id: 3, name: "Priya", course: "MCA" }
 ];
 
-// READ: Get all students
+// : Get all students
 app.get("/api/students", (req, res) => {
     res.json(students);
 });
 
-// READ: Get one student
+// : Get one student 
 app.get("/api/students/:id", (req, res) => {
     const id = Number(req.params.id);
     const student = students.find(s => s.id === id);
@@ -92,3 +91,8 @@ app.delete("/api/students/:id", (req, res) => {
 app.listen(5000, () => {
     console.log("Server running on port 5000");
 });
+
+// text Box 
+// text area 
+// file append kr ke data Show 
+// fs.unlink remove file

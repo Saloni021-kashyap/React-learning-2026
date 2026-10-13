@@ -1,13 +1,54 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>frontend</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Save Text</title>
+</head>
+<body>
+    <h2>Enter Your Data</h2>
+
+    <textarea
+        id="content"
+        rows="6"
+        cols="40"
+        placeholder="Write something..."
+    ></textarea>
+
+    <br><br>
+
+    <button onclick="saveData()">Save Data</button>
+    <button onclick="showData()">Show Data</button>
+
+    <h3>Saved Data:</h3>
+    <pre id="result"></pre>
+
+    <script>
+        async function saveData() {
+            const content = document.getElementById("content").value;
+
+            const response = await fetch(
+                "http://localhost:3000/save",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ content })
+                }
+            );
+
+            const data = await response.json();
+            alert(data.message);
+        }
+
+        async function showData() {
+            const response = await fetch(
+                "http://localhost:3000/show"
+            );
+
+            const data = await response.json();
+            document.getElementById("result").textContent = data.content;
+        }
+    </script>
+</body>
 </html>
